@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "modulo-cliente"
+  },
+  "targets": {
+    "modulo-cliente": {
+      "hosting": {
+        "DEMO": [
+          "modulo-cliente"
+        ]
+      }
+    }
+  }
+}

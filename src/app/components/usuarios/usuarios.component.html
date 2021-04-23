@@ -1,0 +1,60 @@
+<p>HOLA</p>
+
+<div *ngIf="usuarios?.length > 0;else noUsuarios">
+  <ul *ngFor="let usuario of usuarios" class="collection">
+    <li class="collection-item">
+      <a href="#" class="secondary-content">
+        <i *ngIf="editState == false" (click)="editUsuario($event, usuario)" class="material-icons">mode_edit</i>
+        <i *ngIf="editState && usuarioToEdit.id == usuario.id" (click)="clearState()" class="material-icons">close</i>
+      </a>
+      <h2>
+        <strong>{{usuario.nombre}}</strong>
+      </h2>
+      <br>
+      <blockquote>{{usuario.descripcion}}</blockquote>
+      <br>
+      <span class="my_tag amber">
+        <strong>Nombre:</strong>{{usuario.Nombre}}
+      </span>
+      <span class="my_tag amber">
+        <strong>Apellidos:</strong>{{usuario.Apellido}}
+      </span>
+      <span class="my_tag amber">
+        <strong>Edad:</strong>{{usuario.Edad}}
+      </span>
+      <hr>
+      <div *ngIf="editState && usuarioToEdit.id == usuario.id" class="container-updateUsuario">
+        <!-- TODO: form -->
+        <form (ngSubmit)="onUdpdateUsuario(usuario)" class="col s6">
+          <div class="row">
+            <div class="input-field col s6">
+              <input [(ngModel)]="usuario.Nombre" #Nombre="ngModel" type="text" name="Nombre" id="Nombre" placeholder="Nombre usuario">
+              <label>Nombre</label>
+            </div>
+            <div class="input-field col s6">
+              <input [(ngModel)]="usuario.Apellido" #Apellido="ngModel" type="text" name="Apellido" id="Apellido" placeholder="Apellidos usuario">
+              <label>Apellidos</label>
+            </div>
+            <div class="input-field col s6">
+              <input [(ngModel)]="usuario.Edad" #descripcion="ngModel" type="text" name="Edad" id="Edad" placeholder="Edad usuario">
+              <label>Edad</label>
+            </div>
+            <button (click)="deleteUsuario($event, usuario)" class="btn red right">
+              Borrar
+              <i class="material-icons right">delete_forever</i>
+            </button>
+            <button type="submit" class="btn orange">
+              Actualizar
+              <i class="material-icons right">save</i>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+<ng-template #noUsuarios>
+  <hr>
+  <h5>NO EXISTEN USUARIOS</h5>
+</ng-template>
